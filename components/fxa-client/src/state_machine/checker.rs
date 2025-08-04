@@ -219,9 +219,15 @@ impl From<InternalState> for FxaStateCheckerState {
     fn from(state: InternalState) -> Self {
         match state {
             InternalState::GetAuthState => Self::GetAuthState,
-            InternalState::BeginOAuthFlow { scopes, entrypoint, service } => {
-                Self::BeginOAuthFlow { scopes, entrypoint, service }
-            }
+            InternalState::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            } => Self::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            },
             InternalState::BeginPairingFlow {
                 pairing_url,
                 scopes,
@@ -251,9 +257,15 @@ impl From<FxaStateCheckerState> for InternalState {
     fn from(state: FxaStateCheckerState) -> Self {
         match state {
             FxaStateCheckerState::GetAuthState => Self::GetAuthState,
-            FxaStateCheckerState::BeginOAuthFlow { scopes, entrypoint, service } => {
-                Self::BeginOAuthFlow { scopes, entrypoint, service }
-            }
+            FxaStateCheckerState::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            } => Self::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            },
             FxaStateCheckerState::BeginPairingFlow {
                 pairing_url,
                 scopes,

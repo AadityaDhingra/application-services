@@ -14,9 +14,15 @@ use State::*;
 impl InternalStateMachine for DisconnectedStateMachine {
     fn initial_state(&self, event: FxaEvent) -> Result<State> {
         match event {
-            FxaEvent::BeginOAuthFlow { scopes, entrypoint, service } => {
-                Ok(State::BeginOAuthFlow { scopes, entrypoint, service })
-            }
+            FxaEvent::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            } => Ok(State::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            }),
             FxaEvent::BeginPairingFlow {
                 pairing_url,
                 scopes,

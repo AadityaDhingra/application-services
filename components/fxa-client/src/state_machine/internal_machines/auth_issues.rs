@@ -14,7 +14,11 @@ use State::*;
 impl InternalStateMachine for AuthIssuesStateMachine {
     fn initial_state(&self, event: FxaEvent) -> Result<State> {
         match event {
-            FxaEvent::BeginOAuthFlow { scopes, entrypoint, service } => Ok(BeginOAuthFlow {
+            FxaEvent::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            } => Ok(BeginOAuthFlow {
                 scopes: scopes.clone(),
                 entrypoint: entrypoint.clone(),
                 service: service.clone(),

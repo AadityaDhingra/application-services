@@ -89,7 +89,9 @@ impl FirefoxAccount {
     ) -> ApiResult<String> {
         let scopes = scopes.iter().map(T::as_ref).collect::<Vec<_>>();
         let service = service.iter().map(AsRef::as_ref).collect::<Vec<_>>();
-        self.internal.lock().begin_oauth_flow(&scopes, entrypoint, &service)
+        self.internal
+            .lock()
+            .begin_oauth_flow(&scopes, entrypoint, &service)
     }
 
     /// Get the URL at which to begin a device-pairing signin flow.

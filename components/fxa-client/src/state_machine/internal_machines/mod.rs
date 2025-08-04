@@ -126,7 +126,11 @@ impl State {
                 account.ensure_capabilities(&device_config.capabilities)?;
                 Event::EnsureDeviceCapabilitiesSuccess
             }
-            State::BeginOAuthFlow { scopes, entrypoint ,service} => {
+            State::BeginOAuthFlow {
+                scopes,
+                entrypoint,
+                service,
+            } => {
                 let scopes: Vec<&str> = scopes.iter().map(String::as_str).collect();
                 let service: Vec<&str> = service.iter().map(AsRef::as_ref).collect();
                 let oauth_url = account.begin_oauth_flow(&scopes, entrypoint, &service)?;
@@ -140,7 +144,8 @@ impl State {
             } => {
                 let scopes: Vec<&str> = scopes.iter().map(String::as_str).collect();
                 let service: Vec<&str> = service.iter().map(AsRef::as_ref).collect();
-                let oauth_url = account.begin_pairing_flow(pairing_url, &scopes, entrypoint, &service)?;
+                let oauth_url =
+                    account.begin_pairing_flow(pairing_url, &scopes, entrypoint, &service)?;
                 Event::BeginPairingFlowSuccess { oauth_url }
             }
             State::CompleteOAuthFlow { code, state } => {
